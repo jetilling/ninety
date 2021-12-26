@@ -1,0 +1,12 @@
+.tab {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  margin-left: 15px;
+  border-left: 1px solid lightgray;
+  padding-left: 15px;
+}
+
+.tab:hover {
+  cursor: pointer;
+}

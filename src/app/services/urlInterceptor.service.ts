@@ -14,8 +14,11 @@ export class UrlInterceptor implements HttpInterceptor {
     if (err.status === 401 || err.status === 403) {
         let refreshToken = getItem('ninety-refresh')
 
+        // maybe call refreshAuthentication once (have a thing that doesn't call this twice)
+        // then subscribe to refreshtoken completed observable
         return this.authService.refreshAuthentication(refreshToken).pipe(switchMap((response: Response) => {
           this.authService.setAuthTokens(response.data)
+          request = request.clone({ headers: request.headers.set('Authorization', `Bearer ${response.data.access_token}`) });
           return next.handle(request)
         }))
     }

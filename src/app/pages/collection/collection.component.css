@@ -1,0 +1,24 @@
+.collection-main {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;  */
+  padding: 10px; 
+}
+
+.collection-top-bar {
+  display: flex;
+  align-items: center;
+}
+
+.collection-title {
+  font-size: 30px;
+  margin: 0px;
+}
+
+.collection-tabs {
+  margin-left: 8px;
+}
+
+.collection-content {
+  
+}

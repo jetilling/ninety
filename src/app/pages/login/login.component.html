@@ -1,30 +1,35 @@
 <div class="login-main">
 
-  <n-form-card padding="40px" width="400px">
-    <h2 class="card-title">Hello Again!</h2>
+  <h1 class="title">Ninety</h1>
 
-    <n-label 
-      class="label"
-      label="Email">
-      <n-input 
-        (handleChange)="handleEmailChange($event)">
-      </n-input>
-    </n-label>
+  <div class="login-card-container">
+    <n-form-card padding="40px" width="400px">
+      <h2 class="card-title">Hello Again!</h2>
+  
+      <n-label 
+        class="label"
+        label="Email">
+        <n-input 
+          (handleChange)="handleEmailChange($event)">
+        </n-input>
+      </n-label>
+  
+      <n-label 
+        class="label"
+        label="Password">
+        <n-input 
+          type="password" 
+          (handleChange)="handlePasswordChange($event)">
+        </n-input>
+      </n-label>
+  
+      <n-button 
+        class="login-button"
+        (handleClick)="login()">
+        Login
+      </n-button>
+    </n-form-card>
+  </div>
 
-    <n-label 
-      class="label"
-      label="Password">
-      <n-input 
-        type="password" 
-        (handleChange)="handlePasswordChange($event)">
-      </n-input>
-    </n-label>
-
-    <n-button 
-      class="login-button"
-      text="Login"
-      (handleClick)="login()">
-    </n-button>
-  </n-form-card>
 
 </div>

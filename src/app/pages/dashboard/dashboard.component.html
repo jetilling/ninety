@@ -1,3 +1,30 @@
-<h1>Dashboard</h1>
+<div class="dashboard">
+  <div class="top-bar">
+    <h1 class="title">Ninety</h1>
+    <div>
+      <input class="search" placeholder="command (Press '/' to focus)" />
+      <!-- Question Icon -->
+    </div>
+    <div class="user-container">
+      <span>Hey, <a href="">{{currentUserName}}</a>!</span>
+      <n-button class="logout-button" boxShadow="4px 4px 1px 1px black">Logout</n-button>
+    </div>
 
-<router-outlet></router-outlet>
+  </div>
+  <div class="main">
+    <div class="side-bar">
+      <div class="side-bar-collections-container">
+        <h3 class="side-bar-title">Collections</h3>
+        <div class="collections-container" *ngFor="let collection of collections" (click)="viewCollection(collection)">
+            <div [ngStyle]="{'background': collection.color, 'border-color': collection.color}" class="color"></div>
+            <span class="collection-title">{{collection.name}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
+

@@ -5,6 +5,8 @@ import { ButtonComponent } from './button/button.component';
 import { FormCardComponent } from './form-card/form-card.component';
 import { InputComponent } from './input/input.component';
 import { LabelComponent } from './label/label.component';
+import { TableComponent } from './table/table.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
   imports: [
@@ -16,12 +18,16 @@ import { LabelComponent } from './label/label.component';
     ButtonComponent,
     FormCardComponent,
     LabelComponent,
+    TabsComponent,
+    TableComponent,
   ],
   declarations: [
     InputComponent,
     ButtonComponent,
     FormCardComponent,
     LabelComponent,
+    TabsComponent,
+    TableComponent,
   ],
   providers: [],
 })

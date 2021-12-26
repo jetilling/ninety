@@ -7,7 +7,8 @@
   border-radius: 5px;
   min-height: 100px;
   min-width: 300px;
-  box-shadow: 12px 12px 2px 1px #8ae1fc;
+  /* box-shadow: 12px 12px 2px 1px #8ae1fc; */
+  box-shadow: 12px 12px 1px 1px 	#5e5ccf;
 }
 
 .content {

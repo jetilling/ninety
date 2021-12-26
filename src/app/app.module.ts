@@ -8,8 +8,11 @@ import { ComponentsModule } from './components/components.module';
 import { AuthGuard } from './guards/auth.guard';
 import { PagesModule } from './pages/pages.module';
 import { AuthService } from './services/auth.service';
+import { CollectionService } from './services/collections.service';
 import { DataService } from './services/data.service';
+import { ItemService } from './services/item.service';
 import { UrlInterceptor } from './services/urlInterceptor.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { UrlInterceptor } from './services/urlInterceptor.service';
     AuthGuard,
     AuthService,
     DataService,
+    CollectionService,
+    UserService,
+    ItemService
   ],
   bootstrap: [AppComponent]
 })

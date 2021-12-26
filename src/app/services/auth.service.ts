@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   refreshAuthentication(refreshToken) {
-    this.isAuthenticatedSubject.next(false)
+    // this.isAuthenticatedSubject.next(false)
     removeItem('ninety-token')
     return this.http.post('/auth/refresh', {refresh_token: refreshToken})
   }
@@ -60,13 +60,13 @@ export class AuthService {
   getCurrentUser() {
     if (!this.currentUer.value.email) {
       this.http.get('/users/me').subscribe((response: Response) => {
-        console.log(response)
         this.currentUer.next(response.data)
       })
     }
   }
 
   setAuthTokens(tokens) {
+    console.log('tokens: ', tokens)
     setItem('ninety-token', tokens.access_token)
     setItem('ninety-refresh', tokens.refresh_token)
     this.isAuthenticatedSubject.next(true)

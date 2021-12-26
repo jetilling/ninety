@@ -1,0 +1,7 @@
+<div>
+  <button 
+    *ngFor="let tab of tabs" 
+    class="tab" 
+    [ngStyle]="{'color': tab.isActive ? selectedColor : 'black'}"
+    (click)="tab.handler(tab)">{{tab.name}}</button>
+</div>
