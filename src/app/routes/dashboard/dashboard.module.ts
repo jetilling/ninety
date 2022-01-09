@@ -1,21 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ComponentsModule } from '../shared/components/components.module';
-import { CollectionComponent } from './collection/collection.component';
+
+import { ComponentsModule } from '../../shared/components/components.module';
+import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ComponentsModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
-    CollectionComponent
+    DashboardComponent,
   ],
   declarations: [
-    CollectionComponent
+    DashboardComponent,
   ],
   providers: [],
 })
-export class PagesModule { }
+export class DashboardModule { }

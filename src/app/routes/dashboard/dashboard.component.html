@@ -7,7 +7,7 @@
     </div>
     <div class="user-container">
       <span>Hey, <a href="">{{currentUserName}}</a>!</span>
-      <n-button class="logout-button" boxShadow="4px 4px 1px 1px black">Logout</n-button>
+      <n-button class="logout-button" boxShadow="4px 4px 1px 1px black" (click)="logout()">Logout</n-button>
     </div>
 
   </div>
@@ -20,6 +20,7 @@
             <span class="collection-title">{{collection.name}}</span>
         </div>
       </div>
+      <n-logs></n-logs>
     </div>
     <div class="content">
       <router-outlet></router-outlet>

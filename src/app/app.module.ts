@@ -1,18 +1,23 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { AuthEffects } from './shared/store/auth/auth.effects';
+import { authReducer } from './shared/store/auth/auth.reducer';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ComponentsModule } from './components/components.module';
+import { ComponentsModule } from './shared/components/components.module';
 import { AuthGuard } from './guards/auth.guard';
 import { PagesModule } from './pages/pages.module';
 import { AuthService } from './services/auth.service';
-import { CollectionService } from './services/collections.service';
-import { DataService } from './services/data.service';
-import { ItemService } from './services/item.service';
 import { UrlInterceptor } from './services/urlInterceptor.service';
-import { UserService } from './services/user.service';
+import { LoginModule } from './routes/login/login.module';
+import { DashboardModule } from './routes/dashboard/dashboard.module';
+import { logsReducer } from './shared/components/logs/store/logs.reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -23,16 +28,19 @@ import { UserService } from './services/user.service';
     AppRoutingModule,
     ComponentsModule,
     PagesModule,
-    HttpClientModule
+    LoginModule,
+    DashboardModule,
+    HttpClientModule,
+    StoreModule.forRoot({ auth: authReducer, logs: logsReducer }),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 5
+    })
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true},
     AuthGuard,
     AuthService,
-    DataService,
-    CollectionService,
-    UserService,
-    ItemService
   ],
   bootstrap: [AppComponent]
 })

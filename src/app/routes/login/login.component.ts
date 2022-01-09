@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { Store } from '@ngrx/store';
+import { login, logout } from '../../shared/store/auth/auth.actions'
+
 
 @Component({
   selector: 'login',
@@ -12,7 +14,7 @@ export class LoginComponent implements OnInit {
   email = ""
   password = ""
 
-  constructor(private authService: AuthService) { }
+  constructor(private store: Store) { }
 
   ngOnInit() { }
 
@@ -26,8 +28,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.email && this.password) {
-      this.authService.login(this.email, this.password)
+      
+      this.store.dispatch(login({email: this.email, password: this.password}))
     }
+  }
+
+  logout() {
+    this.store.dispatch(logout())
   }
 
 }

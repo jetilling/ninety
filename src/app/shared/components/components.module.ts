@@ -5,6 +5,7 @@ import { ButtonComponent } from './button/button.component';
 import { FormCardComponent } from './form-card/form-card.component';
 import { InputComponent } from './input/input.component';
 import { LabelComponent } from './label/label.component';
+import { LogsComponent } from './logs/logs.component';
 import { TableComponent } from './table/table.component';
 import { TabsComponent } from './tabs/tabs.component';
 
@@ -20,6 +21,7 @@ import { TabsComponent } from './tabs/tabs.component';
     LabelComponent,
     TabsComponent,
     TableComponent,
+    LogsComponent,
   ],
   declarations: [
     InputComponent,
@@ -28,6 +30,7 @@ import { TabsComponent } from './tabs/tabs.component';
     LabelComponent,
     TabsComponent,
     TableComponent,
+    LogsComponent,
   ],
   providers: [],
 })
