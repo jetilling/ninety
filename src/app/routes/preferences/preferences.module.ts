@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ComponentsModule } from '../../shared/components/components.module';
-import { DashboardComponent } from './dashboard.component';
+import { PreferencesComponent } from './preferences.component';
 
 @NgModule({
   imports: [
@@ -12,11 +12,11 @@ import { DashboardComponent } from './dashboard.component';
     RouterModule,
   ],
   exports: [
-    DashboardComponent,
+    PreferencesComponent,
   ],
   declarations: [
-    DashboardComponent,
+    PreferencesComponent,
   ],
   providers: [],
 })
-export class DashboardModule { }
+export class PreferencesModule { }

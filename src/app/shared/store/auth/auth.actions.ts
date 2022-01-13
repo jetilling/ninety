@@ -44,5 +44,5 @@ export const getUser = createAction(
 
 export const updateUser = createAction(
   AuthActionTypes.UPDATE_USER,
-  props<{ user: any}>()
+  props<{ user: any }>()
 );

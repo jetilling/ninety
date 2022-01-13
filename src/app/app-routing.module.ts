@@ -4,8 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 
 import { LoginComponent } from './routes/login/login.component';
-import { DashboardComponent } from './routes/dashboard/dashboard.component';
 import { CollectionComponent } from './pages/collection/collection.component';
+import { TasksComponent } from './routes/tasks/tasks.component';
+import { PreferencesComponent } from './routes/preferences/preferences.component';
 
 const routes: Routes = [ 
   {
@@ -13,15 +14,14 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
+    path: 'tasks',
+    component: TasksComponent,
     canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'c/:collection',
-        component: CollectionComponent,
-      }
-    ]
+  },
+  {
+    path: 'preferences',
+    component: PreferencesComponent,
+    canActivate: [AuthGuard],
   }, 
   {
     path: '**',

@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { of, from } from 'rxjs';
 import { catchError, exhaustMap, map, tap, mergeMap } from 'rxjs/operators';
 import {
   AuthActionTypes,
   loginSuccess,
   loginFailure,
+  logout,
   logoutSuccess,
   logoutFailure,
+  getUser,
   updateUser,
 } from './auth.actions';
 import { LoginAction } from './auth.model';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { addLogMessage } from '../../components/logs/store/logs.actions';
+import { getLastKnownRoute } from '../../utilities/utilities';
  
 @Injectable()
 export class AuthEffects {
@@ -23,11 +26,8 @@ export class AuthEffects {
       ofType(AuthActionTypes.LOGIN),
       exhaustMap((action: LoginAction) => 
         this.authService.login(action.email, action.password).pipe(
-          map(() => loginSuccess()),
-          catchError(error => {
-            console.log('error: ', error)
-            return of(addLogMessage({ message: `${error.message}; ${error.error.text}` }))
-          })
+          map(() => getUser()),
+          catchError(error => of(addLogMessage({ message: `${error.message}; ${error.error.text}` })))
         )
       )
     )
@@ -37,8 +37,9 @@ export class AuthEffects {
         return this.actions.pipe(
           ofType(AuthActionTypes.LOGIN_SUCCESS),
           tap(() => {
-            console.log('in here')
-            this.router.navigate(['/dashboard'])
+            const lastKnownRoute = getLastKnownRoute()
+            console.log('lastKnownRoute: ', lastKnownRoute)
+            this.router.navigate([lastKnownRoute])
           })
         )},
         { dispatch: false }
@@ -59,7 +60,6 @@ export class AuthEffects {
     return this.actions.pipe(
       ofType(AuthActionTypes.LOGOUT_SUCCESS),
       tap(() => {
-        console.log('in here')
         this.router.navigate(['/login'])
       })
     )},
@@ -72,15 +72,12 @@ export class AuthEffects {
       exhaustMap((action: LoginAction) => 
         this.authService.getUser().pipe(
           mergeMap(user => [
-              updateUser(user), 
-              addLogMessage({ message: 'retrieved user'}),
+              updateUser({ user }), 
+              addLogMessage({ message: 'retrieved user' }),
               loginSuccess()
             ]
           ),
-          catchError(error => {
-            console.log('error: ', error)
-            return of(addLogMessage({ message: `need to login!` }))
-          })
+          catchError(error => from([addLogMessage({ message: `need to login!` }), logout()]))
         )
       )
     )

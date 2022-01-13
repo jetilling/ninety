@@ -15,9 +15,10 @@ import { PagesModule } from './pages/pages.module';
 import { AuthService } from './services/auth.service';
 import { UrlInterceptor } from './services/urlInterceptor.service';
 import { LoginModule } from './routes/login/login.module';
-import { DashboardModule } from './routes/dashboard/dashboard.module';
 import { logsReducer } from './shared/components/logs/store/logs.reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { TasksModule } from './routes/tasks/tasks.module';
+import { PreferencesModule } from './routes/preferences/preferences.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ComponentsModule,
     PagesModule,
     LoginModule,
-    DashboardModule,
+    TasksModule,
+    PreferencesModule,
     HttpClientModule,
     StoreModule.forRoot({ auth: authReducer, logs: logsReducer }),
     EffectsModule.forRoot([AuthEffects]),

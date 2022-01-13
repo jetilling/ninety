@@ -11,34 +11,6 @@ import { getUser } from '../shared/store/auth/auth.actions';
 @Injectable()
 export class AuthService {
 
-  emptyUserObject = {
-    id: "",
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    location: null,
-    title: null,
-    description: null,
-    tags: null,
-    avatar: null,
-    language: "",
-    theme: "",
-    tfa_secret: null,
-    status: "",
-    role: "",
-    token: null,
-    last_access: "",
-    last_page: "",
-    provider: "",
-    external_identifier: null,
-    auth_data: null
-  }
-  
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  public isAuthenticatedObservable = this.isAuthenticatedSubject.asObservable()
-  currentUer = new BehaviorSubject<User>(this.emptyUserObject)
-
   constructor(private http: HttpClient,
               private store: Store) { }
 
@@ -59,36 +31,6 @@ export class AuthService {
 
   getUser(): Observable<any> {
     return this.http.get('/api/user');
-  }
-
-  // OLD
-
-  refreshAuthentication(refreshToken) {
-    // this.isAuthenticatedSubject.next(false)
-    removeItem('ninety-token')
-    return this.http.post('/auth/refresh', {refresh_token: refreshToken})
-  }
-
-  handlePageReload() {
-    const accessToken = getItem('ninety-token');
-    if (accessToken) {
-      this.isAuthenticatedSubject.next(true)
-    }
-  }
-
-  getCurrentUser() {
-    if (!this.currentUer.value.email) {
-      this.http.get('/users/me').subscribe((response: Response) => {
-        this.currentUer.next(response.data)
-      })
-    }
-  }
-
-  setAuthTokens(tokens) {
-    console.log('tokens: ', tokens)
-    setItem('ninety-token', tokens.access_token)
-    setItem('ninety-refresh', tokens.refresh_token)
-    this.isAuthenticatedSubject.next(true)
   }
 
 }

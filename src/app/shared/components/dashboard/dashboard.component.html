@@ -6,7 +6,7 @@
       <!-- Question Icon -->
     </div>
     <div class="user-container">
-      <span>Hey, <a href="">{{currentUserName}}</a>!</span>
+      <span>Hey, <a [routerLink]="['/preferences']">{{(user | async).name}}</a>!</span>
       <n-button class="logout-button" boxShadow="4px 4px 1px 1px black" (click)="logout()">Logout</n-button>
     </div>
 
@@ -15,15 +15,16 @@
     <div class="side-bar">
       <div class="side-bar-collections-container">
         <h3 class="side-bar-title">Collections</h3>
-        <div class="collections-container" *ngFor="let collection of collections" (click)="viewCollection(collection)">
+        <!-- <div class="collections-container" *ngFor="let collection of collections" (click)="viewCollection(collection)">
             <div [ngStyle]="{'background': collection.color, 'border-color': collection.color}" class="color"></div>
             <span class="collection-title">{{collection.name}}</span>
-        </div>
+        </div> -->
       </div>
       <n-logs></n-logs>
     </div>
     <div class="content">
-      <router-outlet></router-outlet>
+      <!-- <router-outlet></router-outlet> -->
+      <ng-content></ng-content>
     </div>
   </div>
 
