@@ -1,4 +1,4 @@
-import { loginFailure, loginSuccess, logoutSuccess, updateUser } from "./auth.actions";
+import { loginFailure, loginSuccess, logout, updateUser } from "./auth.actions";
 import { createReducer, on } from "@ngrx/store";
 
 export interface State {
@@ -33,6 +33,6 @@ export const authReducer = createReducer(
   initialState,
   on(loginSuccess, (state) => ({ ...state, authenticated: true})),
   on(loginFailure, (state, { error }) => ({ ...state, authenticated: false, user: emptyUser, errorMessage: error})),
-  on(logoutSuccess, (state) => ({...state, authenticated: false, user: emptyUser})),
+  on(logout, (state) => ({...state, authenticated: false, user: emptyUser})),
   on(updateUser, (state, { user }) => ({...state, authenticated: true, user: user}))
 );

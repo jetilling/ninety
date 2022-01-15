@@ -15,10 +15,12 @@
     <div class="side-bar">
       <div class="side-bar-collections-container">
         <h3 class="side-bar-title">Collections</h3>
-        <!-- <div class="collections-container" *ngFor="let collection of collections" (click)="viewCollection(collection)">
-            <div [ngStyle]="{'background': collection.color, 'border-color': collection.color}" class="color"></div>
-            <span class="collection-title">{{collection.name}}</span>
-        </div> -->
+
+        <div class="collections-container" [routerLink]="['/tasks']">
+          <div [ngStyle]="{'background': 'purple', 'border-color': 'purple'}" class="color"></div>
+          <span class="collection-title">Tasks</span>
+        </div>
+
       </div>
       <n-logs></n-logs>
     </div>

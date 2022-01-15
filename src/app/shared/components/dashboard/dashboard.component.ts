@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit{
               private store: Store) { }
 
   ngOnInit() { 
-    this.user.subscribe(user => {console.log('user: ', user)})
   }
 
   logout() {

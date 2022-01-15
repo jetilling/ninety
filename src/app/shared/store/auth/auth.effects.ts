@@ -7,8 +7,6 @@ import {
   loginSuccess,
   loginFailure,
   logout,
-  logoutSuccess,
-  logoutFailure,
   getUser,
   updateUser,
 } from './auth.actions';
@@ -50,21 +48,13 @@ export class AuthEffects {
         ofType(AuthActionTypes.LOGOUT),
         exhaustMap(() => 
           this.authService.logout().pipe(
-            map(() => logoutSuccess()),
-            catchError(error => of(logoutFailure({ error })))
+            tap(() => {
+              this.router.navigate(['/login'])
+            })
           ))
-      )
+      ),
+      { dispatch: false }
   )
-
-  logoutSuccess = createEffect(() => {
-    return this.actions.pipe(
-      ofType(AuthActionTypes.LOGOUT_SUCCESS),
-      tap(() => {
-        this.router.navigate(['/login'])
-      })
-    )},
-    { dispatch: false }
-  );
 
   getUser = createEffect(() =>
     this.actions.pipe(
