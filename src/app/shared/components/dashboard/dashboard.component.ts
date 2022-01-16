@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectUser } from 'src/app/shared/store/auth/auth.selectors';
@@ -13,10 +13,14 @@ import { logout } from '../../store/auth/auth.actions'
 export class DashboardComponent implements OnInit{
   user = this.store.select(selectUser);
 
+  @Input() appName = ""
+  @Input() userLink = ""
+
   constructor(private router: Router, 
               private store: Store) { }
 
   ngOnInit() { 
+    console.log('userLink: ', this.userLink)
   }
 
   logout() {

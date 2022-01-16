@@ -14,7 +14,7 @@ import { LoginAction } from './auth.model';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { addLogMessage } from '../../components/logs/store/logs.actions';
-import { getLastKnownRoute } from '../../utilities/utilities';
+import { clearLastKnownRoute, getLastKnownRoute } from '../../utilities/utilities';
  
 @Injectable()
 export class AuthEffects {
@@ -48,12 +48,17 @@ export class AuthEffects {
         ofType(AuthActionTypes.LOGOUT),
         exhaustMap(() => 
           this.authService.logout().pipe(
-            tap(() => {
+            map(() => {
+              clearLastKnownRoute()
               this.router.navigate(['/login'])
+              return addLogMessage({ message: 'logged out'})
+            }),
+            catchError(() => {
+              this.router.navigate(['/login'])
+              return of(addLogMessage({ message: 'logged out'}))
             })
           ))
-      ),
-      { dispatch: false }
+      )
   )
 
   getUser = createEffect(() =>
@@ -67,7 +72,7 @@ export class AuthEffects {
               loginSuccess()
             ]
           ),
-          catchError(error => from([addLogMessage({ message: `need to login!` }), logout()]))
+          catchError(error => from([addLogMessage({ message: 'need to login!' }), logout()]))
         )
       )
     )

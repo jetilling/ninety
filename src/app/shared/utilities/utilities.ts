@@ -1,4 +1,4 @@
-import { getItem, setItem } from "./storage"
+import { getItem, setItem, removeItem } from "./storage"
 
 
 export const getLastKnownRoute = (): string => {
@@ -8,7 +8,15 @@ export const getLastKnownRoute = (): string => {
     return lastKnownRoute
   } 
 
-  lastKnownRoute = '/tasks'
+  lastKnownRoute = '/apps'
   setItem('ninety-route', lastKnownRoute)
   return lastKnownRoute
+}
+
+export const setLastKnownRoute = (url) => {
+  setItem('ninety-route', url)
+}
+
+export const clearLastKnownRoute = () => {
+  removeItem('ninety-route')
 }

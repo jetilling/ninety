@@ -4,9 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 
 import { LoginComponent } from './routes/login/login.component';
-import { CollectionComponent } from './pages/collection/collection.component';
-import { TasksComponent } from './routes/tasks/tasks.component';
-import { PreferencesComponent } from './routes/preferences/preferences.component';
+import { TasksComponent } from './routes/task-dude/routes/tasks/tasks.component';
+import { AppListComponent } from './routes/app-list/app-list.component';
+import { TaskDudeComponent } from './routes/task-dude/task-dude.component';
 
 const routes: Routes = [ 
   {
@@ -14,15 +14,16 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'tasks',
-    component: TasksComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'preferences',
-    component: PreferencesComponent,
+    path: 'task-dude',
+    component: TaskDudeComponent,
+    loadChildren: () => import('./routes/task-dude/task-dude.module').then(m => m.TaskDudeModule),
     canActivate: [AuthGuard],
   }, 
+  {
+    path: 'apps',
+    component: AppListComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: '**',
     redirectTo: 'login',

@@ -17,8 +17,7 @@ import { UrlInterceptor } from './services/urlInterceptor.service';
 import { LoginModule } from './routes/login/login.module';
 import { logsReducer } from './shared/components/logs/store/logs.reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { TasksModule } from './routes/tasks/tasks.module';
-import { PreferencesModule } from './routes/preferences/preferences.module';
+import { TaskDudeModule } from './routes/task-dude/task-dude.module';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import { PreferencesModule } from './routes/preferences/preferences.module';
     ComponentsModule,
     PagesModule,
     LoginModule,
-    TasksModule,
-    PreferencesModule,
+    TaskDudeModule,
     HttpClientModule,
     StoreModule.forRoot({ auth: authReducer, logs: logsReducer }),
     EffectsModule.forRoot([AuthEffects]),

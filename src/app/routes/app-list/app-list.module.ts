@@ -3,20 +3,21 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ComponentsModule } from '../../shared/components/components.module';
-import { PreferencesComponent } from './preferences.component';
+import { AppListComponent } from './app-list.component';
 
 @NgModule({
   imports: [
+    RouterModule,
     CommonModule,
     ComponentsModule,
     RouterModule,
   ],
   exports: [
-    PreferencesComponent,
+    AppListComponent,
   ],
   declarations: [
-    PreferencesComponent,
+    AppListComponent,
   ],
   providers: [],
 })
-export class PreferencesModule { }
+export class AppListModule { }
