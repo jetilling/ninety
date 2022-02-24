@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import { getItem } from './utilities/storage';
+import { getItem } from './shared/utilities/storage';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +14,14 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.authService.handlePageReload()
+    this.authService.inizializeCSRFProtection()
+    // this.authService.handlePageReload()
 
-    this.authService.isAuthenticatedObservable.subscribe(authenticated => {
-      if (authenticated) {
-        this.authService.getCurrentUser()
-        this.router.navigate(['/dashboard'])
-      }
-    })
+    // this.authService.isAuthenticatedObservable.subscribe(authenticated => {
+    //   if (authenticated) {
+    //     this.authService.getCurrentUser()
+    //     this.router.navigate(['/dashboard'])
+    //   }
+    // })
   }
 }

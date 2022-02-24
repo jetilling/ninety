@@ -1,0 +1,36 @@
+<div class="login-main">
+
+  <h1 class="title">Ninety</h1>
+
+  <div class="login-card-container">
+    <n-form-card padding="40px" width="400px">
+      <h2 class="card-title">Hello Again!</h2>
+  
+      <n-label 
+        class="label"
+        label="Email">
+        <n-input 
+          (handleChange)="handleEmailChange($event)">
+        </n-input>
+      </n-label>
+  
+      <n-label 
+        class="label"
+        label="Password">
+        <n-input 
+          type="password" 
+          (handleChange)="handlePasswordChange($event)">
+        </n-input>
+      </n-label>
+  
+      <n-button 
+        class="login-button"
+        (handleClick)="login()">
+        Login
+      </n-button>
+    </n-form-card>
+  </div>
+
+  <button class="temp-logout" (click)="logout()">Logout</button>
+  <!-- <n-logs></n-logs> -->
+</div>

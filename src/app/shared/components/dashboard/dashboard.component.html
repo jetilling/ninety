@@ -1,0 +1,33 @@
+<div class="dashboard">
+  <div class="top-bar">
+    <h1 class="title" [routerLink]="[ '/apps' ]">Ninety</h1>
+    <h2>{{ appName }}</h2>
+    <div>
+      <!-- <input class="search" placeholder="command (Press '/' to focus)" /> -->
+      <!-- Question Icon -->
+    </div>
+    <div class="user-container">
+      <span>Hey, <a [routerLink]="[ userLink ]">{{(user | async).name}}</a>!</span>
+      <n-button class="logout-button" boxShadow="4px 4px 1px 1px black" (click)="logout()">Logout</n-button>
+    </div>
+
+  </div>
+  <div class="main">
+    <div class="side-bar">
+      <div class="side-bar-collections-container">
+        <h3 class="side-bar-title">Collections</h3>
+
+        <div class="collections-container" [routerLink]="['/task-dude/tasks']">
+          <div [ngStyle]="{'background': 'purple', 'border-color': 'purple'}" class="color"></div>
+          <span class="collection-title">Tasks</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+</div>
+
