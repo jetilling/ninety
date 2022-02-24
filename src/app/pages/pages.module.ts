@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ComponentsModule } from '../shared/components/components.module';
-import { CollectionComponent } from './collection/collection.component';
+import { ComponentsModule } from '../components/components.module';
+
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -11,10 +13,12 @@ import { CollectionComponent } from './collection/collection.component';
     RouterModule
   ],
   exports: [
-    CollectionComponent
+    LoginComponent,
+    DashboardComponent,
   ],
   declarations: [
-    CollectionComponent
+    LoginComponent,
+    DashboardComponent,
   ],
   providers: [],
 })
