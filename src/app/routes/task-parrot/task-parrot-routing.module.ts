@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PreferencesComponent } from './routes/preferences/preferences.component';
 import { TasksComponent } from './routes/tasks/tasks.component';
-import { TaskDudeComponent } from './task-dude.component';
 
 const routes: Routes = [ 
   
@@ -24,4 +23,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TaskDudeRoutingModule { }
+export class TaskParrotRoutingModule { }

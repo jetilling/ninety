@@ -1,0 +1,22 @@
+{
+  "clips" : [
+    {
+      "content" : "import { createReducer, on } from '@ngrx\/store';\n\nexport interface State {}\n\nexport const initialState: State = {};\n\nexport const REDUCER_NAME = createReducer(initialState);\n",
+      "name" : "reducer",
+      "scope" : "editor",
+      "syntax" : "typescript"
+    },
+    {
+      "content" : "import { createAction, props } from '@ngrx\/store';\n\nexport const ActionTypes = {\n  NEW_ACTION: '[Type] ACTION',\n};\n\nexport const someAction = createAction(\n  ActionTypes.NEW_ACTION,\n  props<{ propOne: string; propTwo: string }>()\n);\n",
+      "name" : "Actions",
+      "scope" : "editor",
+      "syntax" : "typescript"
+    },
+    {
+      "content" : "import { createSelector, createFeatureSelector } from '@ngrx\/store';\nimport { State } from '.\/SOME_REDUCER.reducer';\n\nexport const selectState = createFeatureSelector<State>('NAME OF STATE');\n\nexport const selectSomeState = createSelector(\n  selectState,\n  (state: State) => state.someProp\n);\n",
+      "name" : "Selectors",
+      "scope" : "editor",
+      "syntax" : "typescript"
+    }
+  ]
+}

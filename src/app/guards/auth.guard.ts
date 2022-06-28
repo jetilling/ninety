@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate {
     // assume login is true until it's not
       return this.store.select(selectAuthenticated).pipe(
         map(authenticated => {
-          console.log(authenticated)
           if (!authenticated) {
             // this.router.navigate(['/login'])
             // return false

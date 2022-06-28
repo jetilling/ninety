@@ -36,7 +36,6 @@ export class AuthEffects {
           ofType(AuthActionTypes.LOGIN_SUCCESS),
           tap(() => {
             const lastKnownRoute = getLastKnownRoute()
-            console.log('lastKnownRoute: ', lastKnownRoute)
             this.router.navigate([lastKnownRoute])
           })
         )},

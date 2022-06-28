@@ -1,0 +1,57 @@
+<div class="main">
+  <div class="title-container">
+    <h3>Preferences</h3>
+    <div class="legend-container">
+      <div>
+        <span class="available-color"></span>
+        <span>Available</span>
+      </div>
+      <div>
+        <span class="loud-color"></span>
+        Loud Allowed
+      </div>
+    </div>
+  </div>
+  <!--   Let's do cards instead -->
+  <!--   <table class="week-table-container">
+    <tr>
+      <th *ngFor="let preference of preferences$ | async">
+        {{ preference.day }}
+      </th>
+    </tr>
+    <tr>
+      <td *ngFor="let preference of preferences$ | async">
+        <div>
+          <div *ngFor="let loud of preference.loud">
+            {{ loud }}
+          </div>
+        </div>
+        <div>
+          <div *ngFor="let available of preference.available">
+            {{ available }}
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table> -->
+
+  <div class="week-day-container">
+    <div
+      *ngFor="let preference of preferences$ | async; index as i"
+      class="week-day-card"
+    >
+      <div class="week-day-card-header">
+        <h4>{{ preference.day }}</h4>
+        <span *ngIf="i === currentDayIndex"></span>
+      </div>
+    </div>
+  </div>
+
+  <!--   <div *ngFor="let preference of preferences$ | async">
+    {{ preference.day }} - {{ preference.loud }}
+  </div> -->
+
+  <n-input (keyup)="onKeyPress($event)"></n-input>
+  <!--   <input [(ngModel)]="name" (ngModelChange)="keyUp($event)" /> -->
+  <!--   <input (keyup)="onKeyPress($event)" /> -->
+</div>

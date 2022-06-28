@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import { getItem } from './shared/utilities/storage';
+// import { getItem } from './shared/utilities/storage';
+import { filter } from 'rxjs';
+import { setLastKnownRoute } from './shared/utilities/utilities';
+import { ignoredRoutes } from './shared/utilities/constants';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title = 'ninety';
@@ -14,14 +17,14 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.authService.inizializeCSRFProtection()
-    // this.authService.handlePageReload()
+    this.authService.inizializeCSRFProtection();
 
-    // this.authService.isAuthenticatedObservable.subscribe(authenticated => {
-    //   if (authenticated) {
-    //     this.authService.getCurrentUser()
-    //     this.router.navigate(['/dashboard'])
-    //   }
-    // })
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationStart))
+      .subscribe((event: NavigationStart) => {
+        if (!ignoredRoutes.includes(event.url)) {
+          setLastKnownRoute(event.url);
+        }
+      });
   }
 }

@@ -1,0 +1,27 @@
+.card-container {
+  width: 250px;
+  height: 260px;
+  border: 1px solid;
+  border-radius: 4px;
+  background: lightyellow;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+img {
+  width: 100%;
+  position: relative;
+}
+
+.title {
+  text-align: center;
+  position: relative;
+  top: -100px;
+}
+
+.enter-button {
+  position: relative;
+  top: -115px;
+}

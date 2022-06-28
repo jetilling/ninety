@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { AuthEffects } from './shared/store/auth/auth.effects';
 import { authReducer } from './shared/store/auth/auth.reducer';
+import { taskParrotReducer } from './routes/task-parrot/store/task-parrot.reducer';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,31 +18,35 @@ import { UrlInterceptor } from './services/urlInterceptor.service';
 import { LoginModule } from './routes/login/login.module';
 import { logsReducer } from './shared/components/logs/store/logs.reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { TaskDudeModule } from './routes/task-dude/task-dude.module';
+import { TaskParrotModule } from './routes/task-parrot/task-parrot.module';
+import { AppListModule } from './routes/app-list/app-list.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ComponentsModule,
+    AppListModule,
     PagesModule,
     LoginModule,
-    TaskDudeModule,
+    TaskParrotModule,
     HttpClientModule,
-    StoreModule.forRoot({ auth: authReducer, logs: logsReducer }),
+    StoreModule.forRoot({
+      auth: authReducer,
+      logs: logsReducer,
+      taskParrot: taskParrotReducer,
+    }),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({
-      maxAge: 5
-    })
+      maxAge: 5,
+    }),
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
     AuthGuard,
     AuthService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
